@@ -34,7 +34,6 @@ INSTALL_ROOT="${SOURCE_ROOT}/install-xcode"
   cd "${BUILD_ROOT}"
   cmake .. \
         -G "Unix Makefiles" \
-        -DIOWOW_URL=file:///Users/adam/Projects/softmotions/iowow \
         -DCMAKE_BUILD_TYPE=Release \
         -DBUILD_SHARED_LIBS=OFF \
         -DENABLE_HTTP=ON \
@@ -50,7 +49,6 @@ for PLATFORM in ${PLATFORMS}; do
   cd "${BUILD_ROOT}"
   cmake .. \
         -G "Unix Makefiles" \
-        -DIOWOW_URL=file:///Users/adam/Projects/softmotions/iowow \
         -DCMAKE_BUILD_TYPE=Release \
         -DBUILD_SHARED_LIBS=OFF \
         -DENABLE_HTTP=OFF \
