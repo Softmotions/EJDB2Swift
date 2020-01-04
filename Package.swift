@@ -4,21 +4,21 @@
 import PackageDescription
 
 let package = Package(
-  name: "EJDB2Swift",
+  name: "EJDB2",
   products: [
     .library(
-      name: "EJDB2Swift",
-      targets: ["EJDB2Swift"]),
+      name: "EJDB2",
+      targets: ["EJDB2"]),
   ],
   dependencies: [
   ],
   targets: [
-    .systemLibrary(name: "EJDB2", pkgConfig: "libejdb2"),
+    .systemLibrary(name: "CEJDB2", pkgConfig: "libejdb2"),
     .target(
-      name: "EJDB2Swift",
+      name: "EJDB2",
       dependencies: [
-        "EJDB2",
+        "CEJDB2",
       ]),
-    .testTarget(name: "EJDB2SwiftTests", dependencies: ["EJDB2Swift"]),
+    .testTarget(name: "EJDB2Tests", dependencies: ["EJDB2"]),
   ]
 )

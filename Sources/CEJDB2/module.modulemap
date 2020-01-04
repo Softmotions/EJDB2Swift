@@ -1,4 +1,4 @@
-module EJDB2 [system] {
+module CEJDB2 [system] [extern_c] {
   umbrella header "swift_ejdb2.h"
   link "ejdb2"
   export *

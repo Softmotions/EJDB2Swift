@@ -25,21 +25,21 @@ PLATFORMS="SIMULATOR64 OS64"
 BUILD_ROOT="${SOURCE_ROOT}/build-xcode"
 INSTALL_ROOT="${SOURCE_ROOT}/install-xcode"
 
-(
-  PLATFORM="OSX"
-  rm -rf "${BUILD_ROOT}"
-  mkdir -p "${BUILD_ROOT}"
-  INSTALL_PREFIX="${INSTALL_ROOT}/${PLATFORM}"
-  rm -rf "${INSTALL_PREFIX}"
-  cd "${BUILD_ROOT}"
-  cmake .. \
-        -G "Unix Makefiles" \
-        -DCMAKE_BUILD_TYPE=Release \
-        -DBUILD_SHARED_LIBS=OFF \
-        -DENABLE_HTTP=ON \
-        -DCMAKE_INSTALL_PREFIX="${INSTALL_PREFIX}"
-  cmake --build . --target install;
-)
+# (
+#   PLATFORM="OSX"
+#   rm -rf "${BUILD_ROOT}"
+#   mkdir -p "${BUILD_ROOT}"
+#   INSTALL_PREFIX="${INSTALL_ROOT}/${PLATFORM}"
+#   rm -rf "${INSTALL_PREFIX}"
+#   cd "${BUILD_ROOT}"
+#   cmake .. \
+#         -G "Unix Makefiles" \
+#         -DCMAKE_BUILD_TYPE=Release \
+#         -DBUILD_SHARED_LIBS=OFF \
+#         -DENABLE_HTTP=ON \
+#         -DCMAKE_INSTALL_PREFIX="${INSTALL_PREFIX}"
+#   cmake --build . --target install;
+# )
 
 for PLATFORM in ${PLATFORMS}; do
   rm -rf "${BUILD_ROOT}"

@@ -1,10 +1,10 @@
-import EJDB2
+import CEJDB2
 import Foundation
 import XCTest
 
-@testable import EJDB2Swift
+@testable import EJDB2
 
-final class EJDB2SwiftTests: XCTestCase {
+final class EJDB2Tests: XCTestCase {
 
   override func setUp() {
     super.setUp()

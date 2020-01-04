@@ -1,7 +1,7 @@
-import EJDB2
+import CEJDB2
 import Foundation
 
-public enum EJDB2Swift {
+public enum EJDB2 {
 
   /// EJDB2 engine version string
   public static var versionFull: String {
@@ -342,7 +342,7 @@ public final class EJDB2Builder {
   }
 
   /// Opens database instance.
-  public func open() throws -> EJDB2 {
+  public func open() throws -> EJDB2DB {
     var flags: iwkv_openflags = 0
     if self.readonly ?? false {
       flags |= IWKV_RDONLY
@@ -384,7 +384,7 @@ public final class EJDB2Builder {
       sort_buffer_sz: sortBufferSize ?? 0,
       document_buffer_sz: documentBufferSize ?? 0
     )
-    let ejdb2 = EJDB2()
+    let ejdb2 = EJDB2DB()
     try SWRC(ejdb_open(&opts, &ejdb2.handle))
     return ejdb2
   }
@@ -535,7 +535,7 @@ public typealias JBDOCVisitor = (_: JBDOC) -> Bool
 /// EJDB2 Query builder/executor.
 public final class SWJQL {
 
-  init(_ db: EJDB2, _ query: String, _ collection: String?) throws {
+  init(_ db: EJDB2DB, _ query: String, _ collection: String?) throws {
     let cCollection = collection != nil ? CString(collection) : nil
     self.db = db
     try query.withCString {
@@ -555,7 +555,7 @@ public final class SWJQL {
 
   private var _limit: Int64?
 
-  public let db: EJDB2
+  public let db: EJDB2DB
 
   /// Number of documents to skip.
   public var skip: Int64 {
@@ -829,7 +829,7 @@ final class SWJQLExecutor {
 }
 
 /// EJDB2 database instances.
-public final class EJDB2 {
+public final class EJDB2DB {
 
   init() {
   }
