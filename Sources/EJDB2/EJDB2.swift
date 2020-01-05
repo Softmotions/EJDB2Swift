@@ -777,6 +777,13 @@ public final class SWJQL {
     let (cnt, _) = try execute()
     return cnt
   }
+  
+  /// Alias for executeScalarInt
+  @discardableResult
+  public func executeCount() throws -> Int64 {
+    let (cnt, _) = try execute()
+    return cnt
+  }
 
   /// Returns a list of matched documents.
   /// Use it with care to avoid wasting of memory.
