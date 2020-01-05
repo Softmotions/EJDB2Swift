@@ -134,9 +134,9 @@ public final class JBDOC: CustomStringConvertible {
     }
     return _object!
   }
-
+  
   /// Gets subset of document using RFC 6901 JSON `pointer`.
-  public func at(pointer: String) throws -> Any? {
+  public func at<T>(_ pointer: String) throws -> T? {
     return try jsonAt(object, pointer)
   }
 
