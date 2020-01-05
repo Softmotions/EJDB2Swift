@@ -2,6 +2,7 @@
 /include
 /lib
 /.build
+/build-xcode
 /.idea
 /Packages
 #/*.xcodeproj

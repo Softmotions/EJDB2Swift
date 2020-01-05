@@ -25,22 +25,6 @@ PLATFORMS="SIMULATOR64 OS64"
 BUILD_ROOT="${EJDB_ROOT}/build-xcode"
 INSTALL_ROOT="${EJDB_ROOT}/install-xcode"
 
-# (
-#   PLATFORM="OSX"
-#   rm -rf "${BUILD_ROOT}"
-#   mkdir -p "${BUILD_ROOT}"
-#   INSTALL_PREFIX="${INSTALL_ROOT}/${PLATFORM}"
-#   rm -rf "${INSTALL_PREFIX}"
-#   cd "${BUILD_ROOT}"
-#   cmake .. \
-#         -G "Unix Makefiles" \
-#         -DCMAKE_BUILD_TYPE=Release \
-#         -DBUILD_SHARED_LIBS=OFF \
-#         -DENABLE_HTTP=ON \
-#         -DCMAKE_INSTALL_PREFIX="${INSTALL_PREFIX}"
-#   cmake --build . --target install;
-# )
-
 for PLATFORM in ${PLATFORMS}; do
   rm -rf "${BUILD_ROOT}"
   mkdir -p "${BUILD_ROOT}"
@@ -63,7 +47,6 @@ rm -rf "${INCDIR}"
 
 mkdir -p "${INCDIR}"
 mkdir -p "${LIBDIR}/IOS"
-mkdir -p "${LIBDIR}/OSX"
 
 lipo -create "${INSTALL_ROOT}/SIMULATOR64/lib/libejdb2-2.a" \
              "${INSTALL_ROOT}/OS64/lib/libejdb2-2.a" \
@@ -72,10 +55,6 @@ lipo -create "${INSTALL_ROOT}/SIMULATOR64/lib/libejdb2-2.a" \
 lipo -create "${INSTALL_ROOT}/SIMULATOR64/lib/libiowow-1.a" \
              "${INSTALL_ROOT}/OS64/lib/libiowow-1.a" \
               -o "${LIBDIR}/IOS/libiowow-1.a"
-
-#cp "${INSTALL_ROOT}/OSX/lib/libejdb2-2.a" "${LIBDIR}/OSX/libejdb2-2.a"
-#cp "${INSTALL_ROOT}/OSX/lib/libiowow-1.a" "${LIBDIR}/OSX/libiowow-1.a"
-#cp "${INSTALL_ROOT}/OSX/lib/libfacilio-1.a" "${LIBDIR}/OSX/libfacilio-1.a"
 
 cp -R "${INSTALL_ROOT}/OS64/include" "${SCRIPTPATH}"
 

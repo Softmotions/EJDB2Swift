@@ -241,7 +241,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "#!/bin/bash\n\nif [[ ! -f \"${SRCROOT}/lib/IOS/libejdb2-2.a\" || ! -f \"${SRCROOT}/include/ejdb2/ejdb2.h\" ]]; then\n  $SRCROOT/build.sh;\nfi\n";
+			shellScript = "#!/bin/bash\n\nif [[ ! -f \"${SRCROOT}/lib/IOS/libejdb2-2.a\" || ! -f \"${SRCROOT}/include/ejdb2/ejdb2.h\" ]]; then\n  $SRCROOT/build-ios.sh;\nfi\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
