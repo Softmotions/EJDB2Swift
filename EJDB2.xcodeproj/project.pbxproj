@@ -137,6 +137,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 662FA9E723C079C800F80E06 /* Build configuration list for PBXNativeTarget "EJDB2" */;
 			buildPhases = (
+				661BCBC923C1DF25000A2D26 /* ShellScript */,
 				662FA9CE23C079C800F80E06 /* Headers */,
 				662FA9CF23C079C800F80E06 /* Sources */,
 				662FA9D023C079C800F80E06 /* Frameworks */,
@@ -223,6 +224,26 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		661BCBC923C1DF25000A2D26 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "#!/bin/bash\n\nif [[ ! -f \"${SRCROOT}/lib/IOS/libejdb2-2.a\" || ! -f \"${SRCROOT}/include/ejdb2/ejdb2.h\" ]]; then\n  $SRCROOT/build.sh;\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		662FA9CF23C079C800F80E06 /* Sources */ = {

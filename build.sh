@@ -9,21 +9,21 @@ SCRIPTPATH="$(
 cd $SCRIPTPATH
 
 OWNSRC=""
-if [[ -z "${SOURCE_ROOT}" ]]; then
+if [[ -z "${EJDB_ROOT}" ]]; then
   OWNSRC="yes"
-  SOURCE_ROOT=`mktemp -d`
-  echo "Source root: ${SOURCE_ROOT}"
+  EJDB_ROOT=`mktemp -d`
+  echo "Source root: ${EJDB_ROOT}"
   echo "Checkout https://github.com/Softmotions/ejdb"
-  git clone "https://github.com/Softmotions/ejdb" "${SOURCE_ROOT}"
+  git clone "https://github.com/Softmotions/ejdb" "${EJDB_ROOT}"
 else
-  echo "Source root: ${SOURCE_ROOT}"
+  echo "Source root: ${EJDB_ROOT}"
 fi
 
 LIBDIR="${SCRIPTPATH}/lib"
 INCDIR="${SCRIPTPATH}/include"
 PLATFORMS="SIMULATOR64 OS64"
-BUILD_ROOT="${SOURCE_ROOT}/build-xcode"
-INSTALL_ROOT="${SOURCE_ROOT}/install-xcode"
+BUILD_ROOT="${EJDB_ROOT}/build-xcode"
+INSTALL_ROOT="${EJDB_ROOT}/install-xcode"
 
 # (
 #   PLATFORM="OSX"
@@ -52,7 +52,7 @@ for PLATFORM in ${PLATFORMS}; do
         -DCMAKE_BUILD_TYPE=Release \
         -DBUILD_SHARED_LIBS=OFF \
         -DENABLE_HTTP=OFF \
-        -DCMAKE_TOOLCHAIN_FILE="${SOURCE_ROOT}/ios-tc.cmake" \
+        -DCMAKE_TOOLCHAIN_FILE="${EJDB_ROOT}/ios-tc.cmake" \
         -DPLATFORM="${PLATFORM}" \
         -DCMAKE_INSTALL_PREFIX="${INSTALL_PREFIX}"
   cmake --build . --target install;
@@ -73,12 +73,12 @@ lipo -create "${INSTALL_ROOT}/SIMULATOR64/lib/libiowow-1.a" \
              "${INSTALL_ROOT}/OS64/lib/libiowow-1.a" \
               -o "${LIBDIR}/IOS/libiowow-1.a"
 
-cp "${INSTALL_ROOT}/OSX/lib/libejdb2-2.a" "${LIBDIR}/OSX/libejdb2-2.a"
-cp "${INSTALL_ROOT}/OSX/lib/libiowow-1.a" "${LIBDIR}/OSX/libiowow-1.a"
-cp "${INSTALL_ROOT}/OSX/lib/libfacilio-1.a" "${LIBDIR}/OSX/libfacilio-1.a"
+#cp "${INSTALL_ROOT}/OSX/lib/libejdb2-2.a" "${LIBDIR}/OSX/libejdb2-2.a"
+#cp "${INSTALL_ROOT}/OSX/lib/libiowow-1.a" "${LIBDIR}/OSX/libiowow-1.a"
+#cp "${INSTALL_ROOT}/OSX/lib/libfacilio-1.a" "${LIBDIR}/OSX/libfacilio-1.a"
 
 cp -R "${INSTALL_ROOT}/OS64/include" "${SCRIPTPATH}"
 
 rm -rf "${BUILD_ROOT}"
 rm -rf "${INSTALL_ROOT}"
-test -z "${OWNSRC}" || rm -rf "${SOURCE_ROOT}"
+test -z "${OWNSRC}" || rm -rf "${EJDB_ROOT}"
