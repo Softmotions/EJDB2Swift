@@ -772,6 +772,7 @@ public final class SWJQL {
 
   /// Return scalar integer value as result of query execution.
   /// For example execution of count query: `/... | count`
+  @discardableResult
   public func executeScalarInt() throws -> Int64 {
     let (cnt, _) = try execute()
     return cnt
