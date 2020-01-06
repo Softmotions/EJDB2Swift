@@ -1,4 +1,4 @@
-## EJDB2Swift
+# EJDB2Swift
 
 EJDB2 Swift language binding
 
