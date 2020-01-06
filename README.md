@@ -2,6 +2,8 @@
 
 EJDB2 Swift language binding
 
+https://github.com/Softmotions/EJDB2Swift
+
 * OSX
 * iOS
 * Linux
