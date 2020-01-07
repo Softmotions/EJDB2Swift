@@ -49,6 +49,12 @@ In order to use swift binding you should install system wide `libejdb2` library 
 
 On linux it can be accomplished by installing Debian `ejdb2` package from [ppa:adamansky/ejdb2](https://launchpad.net/~adamansky/+archive/ubuntu/ejdb2)
 
+On OSX
+
+```
+brew install ejdb
+```
+
 In another case you can build it manually
 
 ```sh
