@@ -1,7 +1,6 @@
 import XCTest
-
-import EJDB2SwiftTests
+import EJDB2Tests
 
 var tests = [XCTestCaseEntry]()
-tests += EJDB2SwiftTests.allTests()
+tests += EJDB2Tests.allTests()
 XCTMain(tests)
