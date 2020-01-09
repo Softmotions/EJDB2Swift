@@ -39,6 +39,10 @@ Pod::Spec.new do |spec|
   spec.xcconfig = { 'HEADER_SEARCH_PATHS' => ['$(PODS_ROOT)/EJDB2/include'],
                     'SWIFT_INCLUDE_PATHS' => ['$(PODS_ROOT)/EJDB2/Sources/CEJDB2'] }
 
+  spec.pod_target_xcconfig = {
+                      'ARCHS[sdk=iphonesimulator*]' => '$(ARCHS_STANDARD_64_BIT)'
+                  }
+
   spec.preserve_paths = ['build-ios.sh', 'Sources/CEJDB/module.modulemap', 'lib/**', 'include/**']
   spec.vendored_libraries = 'lib/IOS/*.a'
 
