@@ -80,12 +80,14 @@ Now you are able to use swift binding on OSX/Linux.
 
 ## iOS
 
+### iOS Prerequisites
+
+* cmake
+* XCode
+
 Checkout example todo-list app https://github.com/Softmotions/EJDB2IOSExample
 
-### Prerequisites
-
-* [Carthage](https://github.com/Carthage/Carthage)
-* XCode
+### iOS Carthage
 
 1. Create `Cartfile` with the following content
     ```
@@ -97,4 +99,22 @@ Checkout example todo-list app https://github.com/Softmotions/EJDB2IOSExample
 3. Run `carthage update --verbose`
 4. Then follow usual carthage [project setup instructions](https://github.com/Carthage/Carthage#if-youre-building-for-ios-tvos-or-watchos).
 
-[Sample EJDB2 native iOS app](https://github.com/Softmotions/EJDB2IOSExample)
+[Sample EJDB2 iOS app using Carthage](https://github.com/Softmotions/EJDB2IOSExample)
+
+### iOS Cocoapods
+
+Setup `Podfile` like this:
+
+```ruby
+platform :ios, '9.0'
+
+target 'EJDB2ExampleApp' do
+  use_frameworks!
+  pod "EJDB2"
+end
+```
+
+```sh
+pod install
+```
+
