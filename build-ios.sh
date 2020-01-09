@@ -7,6 +7,11 @@ SCRIPTPATH="$(
   pwd -P
 )"
 cd $SCRIPTPATH
+INSTALLPATH="${SCRIPTPATH}"
+
+if [[ ! -z "${PODS_ROOT}" ]]; then
+  INSTALLPATH="${PODS_ROOT}"
+fi
 
 OWNSRC=""
 if [[ -z "${EJDB_ROOT}" ]]; then
@@ -19,8 +24,8 @@ else
   echo "Source root: ${EJDB_ROOT}"
 fi
 
-LIBDIR="${SCRIPTPATH}/lib"
-INCDIR="${SCRIPTPATH}/include"
+LIBDIR="${INSTALLPATH}/lib"
+INCDIR="${INSTALLPATH}/include"
 PLATFORMS="SIMULATOR64 OS64"
 BUILD_ROOT="${EJDB_ROOT}/build-xcode"
 INSTALL_ROOT="${EJDB_ROOT}/install-xcode"
