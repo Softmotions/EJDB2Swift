@@ -2,7 +2,7 @@
 Pod::Spec.new do |spec|
 
   spec.name         = 'EJDB2'
-  spec.version      = '1.0.9'
+  spec.version      = '1.0.10'
   spec.summary      = 'Embeddable JSON Database engine'
   spec.description  = <<-DESC
   EJDB2 is an embeddable JSON database engine published under MIT license.
