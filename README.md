@@ -92,8 +92,8 @@ Checkout example todo-list app https://github.com/Softmotions/EJDB2IOSExample
     github "Softmotions/EJDB2Swift"
     ```
 2. Open your project XCode settings, navigate to: `Build settings` of your target then set
-   `Header search paths` to  `$(PROJECT_DIR)/Carthage/Checkouts/EJDB2Swift/include`
-   `Framework search paths` to `$(PROJECT_DIR)/Carthage/Build/iOS`
+   **Header search paths** to  `$(PROJECT_DIR)/Carthage/Checkouts/EJDB2Swift/include`
+   **Framework search paths** to `$(PROJECT_DIR)/Carthage/Build/iOS`
 3. Run `carthage update --verbose`
 4. Then follow usual carthage [project setup instructions](https://github.com/Carthage/Carthage#if-youre-building-for-ios-tvos-or-watchos).
 
