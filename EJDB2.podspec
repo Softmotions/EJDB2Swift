@@ -36,8 +36,8 @@ Pod::Spec.new do |spec|
   spec.source       = { :git => 'https://github.com/Softmotions/EJDB2Swift.git', :tag => "v#{spec.version}" }
   spec.source_files = 'Sources/EJDB2/**/*.{c,h,m,swift}'
 
-  spec.user_target_xcconfig = { 'HEADER_SEARCH_PATHS' => ['$(PODS_ROOT)/EJDB2/include'] }
-  spec.pod_target_xcconfig = { 'SWIFT_INCLUDE_PATHS' => ['$(PODS_ROOT)/EJDB2/Sources/CEJDB2'] }
+  spec.xcconfig = { 'HEADER_SEARCH_PATHS' => ['$(PODS_ROOT)/EJDB2/include'],
+                    'SWIFT_INCLUDE_PATHS' => ['$(PODS_ROOT)/EJDB2/Sources/CEJDB2'] }
 
   spec.preserve_paths = ['build-ios.sh', 'Sources/CEJDB/module.modulemap', 'lib/**', 'include/**']
   spec.vendored_libraries = 'lib/IOS/*.a'
