@@ -46,5 +46,8 @@ Pod::Spec.new do |spec|
   spec.preserve_paths = ['build-ios.sh', 'Sources/CEJDB/module.modulemap', 'lib/**', 'include/**']
   spec.vendored_libraries = 'lib/IOS/*.a'
 
-  spec.prepare_command = './build-ios.sh'
+  #spec.prepare_command = './build-ios.sh'
+  spec.script_phase = { :name => 'Build EJDB libs',
+		                    :execution_position => :before_compile,
+		                    :script => 'test -d ${PODS_ROOT}/include/ejdb2.h || ${PODS_ROOT}/build-ios.sh' }
 end

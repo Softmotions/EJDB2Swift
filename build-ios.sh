@@ -7,7 +7,6 @@ SCRIPTPATH="$(
   pwd -P
 )"
 cd $SCRIPTPATH
-echo "PODS_ROOT: ${PODS_ROOT}"
 
 OWNSRC=""
 if [[ -z "${EJDB_ROOT}" ]]; then
