@@ -49,5 +49,5 @@ Pod::Spec.new do |spec|
   #spec.prepare_command = './build-ios.sh'
   spec.script_phase = { :name => 'Build EJDB libs',
 		                    :execution_position => :before_compile,
-		                    :script => 'test -d ${PODS_ROOT}/include/ejdb2.h || ${PODS_ROOT}/build-ios.sh' }
+		                    :script => 'test -d ${PODS_ROOT}/EJDB2/include/ejdb2.h || ${PODS_ROOT}/EJDB2/build-ios.sh' }
 end
