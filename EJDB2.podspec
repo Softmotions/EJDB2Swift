@@ -39,7 +39,7 @@ Pod::Spec.new do |spec|
                     'ARCHS[sdk=iphonesimulator*]' => '$(ARCHS_STANDARD_64_BIT)'
                   }
 
-  spec.preserve_paths = ['*.sh', 'Sources/CEJDB2/module.modulemap', 'lib/**', 'include/**']
+  spec.preserve_paths = ['*.sh', 'Sources/**/*', 'lib/**', 'include/**']
   spec.vendored_libraries = 'lib/IOS/*.a'
 
   spec.script_phase = { :name => 'Build EJDB libs',

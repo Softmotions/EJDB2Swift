@@ -115,6 +115,6 @@ end
 ```
 
 ```sh
-pod install
+pod install --verbose
 ```
 
