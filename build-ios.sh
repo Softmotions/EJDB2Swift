@@ -61,7 +61,7 @@ lipo -create "${INSTALL_ROOT}/SIMULATOR64/lib/libiowow-1.a" \
              "${INSTALL_ROOT}/OS64/lib/libiowow-1.a" \
               -o "${LIBDIR}/IOS/libiowow-1.a"
 
-cp -R "${INSTALL_ROOT}/OS64/include" "${SCRIPTPATH}"
+cp -R "${INSTALL_ROOT}/OS64/include" "${INSTALLPATH}"
 
 rm -rf "${BUILD_ROOT}"
 rm -rf "${INSTALL_ROOT}"

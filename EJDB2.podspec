@@ -27,11 +27,7 @@ Pod::Spec.new do |spec|
 
   spec.swift_version = '5.1'
   spec.static_framework = true
-  spec.ios.deployment_target = '8.0'
-  # spec.osx.deployment_target = '10.7'
-  # spec.watchos.deployment_target = '2.0'
-  # spec.tvos.deployment_target = '9.0'
-
+  spec.ios.deployment_target = '9.0'
 
   spec.source       = { :git => 'https://github.com/Softmotions/EJDB2Swift.git', :tag => "v#{spec.version}" }
   spec.source_files = 'Sources/EJDB2/**/*.{c,h,m,swift}'
@@ -45,10 +41,9 @@ Pod::Spec.new do |spec|
                     'SWIFT_INCLUDE_PATHS' => ['$(PODS_ROOT)/EJDB2/Sources/CEJDB2']
                   }
 
-  spec.preserve_paths = ['build-ios.sh', 'Sources/CEJDB/module.modulemap', 'lib/**', 'include/**']
+  spec.preserve_paths = ['*.sh', 'Sources/CEJDB/module.modulemap', 'lib/**', 'include/**']
   spec.vendored_libraries = 'lib/IOS/*.a'
 
-  #spec.prepare_command = './build-ios.sh'
   spec.script_phase = { :name => 'Build EJDB libs',
 		                    :execution_position => :before_compile,
 		                    :script => 'test -d ${PODS_ROOT}/EJDB2/include/ejdb2.h || ${PODS_ROOT}/EJDB2/build-ios.sh' }
