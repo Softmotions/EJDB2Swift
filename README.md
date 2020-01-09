@@ -101,7 +101,7 @@ Checkout example todo-list app https://github.com/Softmotions/EJDB2IOSExample
 
 [Sample EJDB2 iOS app with Carthage](https://github.com/Softmotions/EJDB2IOSExample)
 
-### iOS Cocoapods
+<!-- ### iOS Cocoapods
 
 Setup `Podfile` like this:
 
@@ -116,5 +116,5 @@ end
 
 ```sh
 pod install
-```
+``` -->
 

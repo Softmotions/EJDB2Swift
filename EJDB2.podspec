@@ -36,9 +36,7 @@ Pod::Spec.new do |spec|
                     'SWIFT_INCLUDE_PATHS' => ['$(PODS_ROOT)/EJDB2/Sources/CEJDB2'] }
 
   spec.pod_target_xcconfig = {
-                    'ARCHS[sdk=iphonesimulator*]' => '$(ARCHS_STANDARD_64_BIT)',
-                    'HEADER_SEARCH_PATHS' => ['$(PODS_ROOT)/EJDB2/include'],
-                    'SWIFT_INCLUDE_PATHS' => ['$(PODS_ROOT)/EJDB2/Sources/CEJDB2']
+                    'ARCHS[sdk=iphonesimulator*]' => '$(ARCHS_STANDARD_64_BIT)']
                   }
 
   spec.preserve_paths = ['*.sh', 'Sources/CEJDB/module.modulemap', 'lib/**', 'include/**']
@@ -46,5 +44,7 @@ Pod::Spec.new do |spec|
 
   spec.script_phase = { :name => 'Build EJDB libs',
 		                    :execution_position => :before_compile,
-		                    :script => 'test -d ${PODS_ROOT}/EJDB2/include/ejdb2.h || ${PODS_ROOT}/EJDB2/build-ios.sh' }
+                        :script => 'test -d ${PODS_ROOT}/EJDB2/include/ejdb2.h || ${PODS_ROOT}/EJDB2/build-ios.sh' }
+
+  spec.prepare_command = "build-ios.sh"
 end
