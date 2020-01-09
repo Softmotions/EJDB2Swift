@@ -114,3 +114,6 @@ end
 pod install --verbose
 ```
 
+Initial build takes some time - be patient
+
+[Sample EJDB2 iOS app with Cocoapods](https://github.com/Softmotions/EJDB2IOSExample/tree/cocoapods)
