@@ -36,10 +36,6 @@ Code examples:
 
 * [Swift SDK](https://swift.org/download/)
 
-### OSX Prerequisites
-
-* XCode installed
-
 ### Setup
 
 On OSX/Linux EJDB2 available as package for [Swift package manager](https://github.com/apple/swift-package-manager/blob/master/Documentation/Usage.md)
@@ -54,7 +50,7 @@ On OSX
 brew install ejdb
 ```
 
-In another case you can build it manually
+In another case you can build it manually with `cmake`
 
 ```sh
 git clone https://github.com/Softmotions/ejdb

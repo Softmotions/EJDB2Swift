@@ -33,10 +33,11 @@ Pod::Spec.new do |spec|
   spec.source_files = 'Sources/EJDB2/**/*.{c,h,m,swift}'
 
   spec.xcconfig = { 'HEADER_SEARCH_PATHS' => ['$(PODS_ROOT)/EJDB2/include'],
-                    'SWIFT_INCLUDE_PATHS' => ['$(PODS_ROOT)/EJDB2/Sources/CEJDB2'] }
+                    'SWIFT_INCLUDE_PATHS' => ['$(PODS_ROOT)/EJDB2/Sources/CEJDB2'],
+                    'ARCHS' => '$(ARCHS_STANDARD_64_BIT)' }
 
   spec.pod_target_xcconfig = {
-                    'ARCHS[sdk=iphonesimulator*]' => '$(ARCHS_STANDARD_64_BIT)'
+                    'ARCHS' => '$(ARCHS_STANDARD_64_BIT)'
                   }
 
   spec.preserve_paths = ['*.sh', 'Sources/**/*', 'lib/**', 'include/**']
