@@ -134,7 +134,7 @@ public final class JBDOC: CustomStringConvertible {
     }
     return _object!
   }
-  
+
   /// Gets subset of document using RFC 6901 JSON `pointer`.
   public func at<T>(_ pointer: String) throws -> T? {
     return try jsonAt(object, pointer)
@@ -228,24 +228,28 @@ public final class EJDB2Builder {
   }
 
   /// Set database readonly mode.
+  @discardableResult
   public func withReadonly(_ v: Bool = true) -> EJDB2Builder {
     readonly = v
     return self
   }
 
   /// Truncate database data on open.
+  @discardableResult
   public func withTruncate(_ v: Bool = true) -> EJDB2Builder {
     truncate = v
     return self
   }
 
   /// Disable WAL for database.
+  @discardableResult
   public func withWalDisabled(_ v: Bool = true) -> EJDB2Builder {
     walDisabled = v
     return self
   }
 
   /// Check CRC32 sum of WAL data blocks during checkpoint.
+  @discardableResult
   public func withWalCheckCRCOnCheckpoint(_ v: Bool = true) -> EJDB2Builder {
     walCheckCRCOnCheckpoint = v
     return self
@@ -254,6 +258,7 @@ public final class EJDB2Builder {
   /// WAL checkpoint buffer size in bytes.
   /// Default: 64Mb for Android/iOS, 1Gb for others
   /// https://iowow.io/wal
+  @discardableResult
   public func withWalCheckpointBufferSize(_ v: UInt64) -> EJDB2Builder {
     walCheckpointBufferSize = v
     return self
@@ -262,14 +267,25 @@ public final class EJDB2Builder {
   /// WAL checkpoint timeout seconds.
   /// Default: 60 (1 min) for Android/iOS, 300 (5 min) for others.
   /// https://iowow.io/wal
+  @discardableResult
   public func withWalCheckpointTimeout(_ v: UInt32) -> EJDB2Builder {
     walCheckpointTimeout = v
+    return self
+  }
+
+  /// WAL savepoint timeout seconds.
+  /// Default: 10 secs
+  /// See https://iowow.io/wal
+  @discardableResult
+  public func withWalSavepointTimeout(_ v: UInt32) -> EJDB2Builder {
+    walSavepointTimeout = v
     return self
   }
 
   /// WAL file intermediate buffer size.
   /// Default: 2Mb Android/iOS, 8Mb for others
   /// https://iowow.io/wal
+  @discardableResult
   public func withWalBufferSize(_ v: Int) -> EJDB2Builder {
     walBufferSize = v
     return self
@@ -277,6 +293,7 @@ public final class EJDB2Builder {
 
   /// **Note:** HTTP API is not available for Android/iOS/Windows.
   /// Enable HTTP/WS database endpoint
+  @discardableResult
   public func withHttpEnabled(_ v: Bool = true) -> EJDB2Builder {
     httpEnabled = v
     return self
@@ -284,6 +301,7 @@ public final class EJDB2Builder {
 
   /// Listen port number.
   /// Default: 9191
+  @discardableResult
   public func withHttpPort(_ v: Int32) -> EJDB2Builder {
     httpPort = v
     return self
@@ -291,18 +309,21 @@ public final class EJDB2Builder {
 
   /// Listen IP/host.
   /// Default: `localhost`
+  @discardableResult
   public func withHttpBind(_ v: String) -> EJDB2Builder {
     httpBind = v
     return self
   }
 
   /// Server access token passed in `X-Access-Token` header
+  @discardableResult
   public func withHttpAccessToken(_ v: String) -> EJDB2Builder {
     httpAccessToken = v
     return self
   }
 
   /// Allow anonymous read-only database access over HTTP
+  @discardableResult
   public func withHttpReadAnon(_ v: Bool = true) -> EJDB2Builder {
     httpReadAnon = v
     return self
@@ -310,6 +331,7 @@ public final class EJDB2Builder {
 
   /// Maximum WS/HTTP API body size in bytes.
   /// Default: 64Mb, Min: 512K
+  @discardableResult
   public func withHttpMaxBodySize(_ v: UInt32) -> EJDB2Builder {
     httpMaxBodySize = v
     return self
@@ -317,6 +339,7 @@ public final class EJDB2Builder {
 
   /// Initial size of buffer in bytes used to process/store document during query execution.
   /// Default 64Kb, min: 16Kb
+  @discardableResult
   public func withDocumentBufferSize(_ v: UInt32) -> EJDB2Builder {
     documentBufferSize = v
     return self
@@ -324,18 +347,21 @@ public final class EJDB2Builder {
 
   /// Max sorting buffer size. If exceeded an overflow temp file for sorted data will created.
   /// Default 16Mb, Min: 1Mb
+  @discardableResult
   public func withSortBufferSize(_ v: UInt32) -> EJDB2Builder {
     sortBufferSize = v
     return self
   }
 
   /// Random seed used for database random generator.
+  @discardableResult
   public func withRandomSeed(_ v: UInt32) -> EJDB2Builder {
     randomSeed = v
     return self
   }
 
   /// Do not wait and raise error if database is locked by another process.
+  @discardableResult
   public func withFileLockFailFast(_ v: Bool = true) -> EJDB2Builder {
     fileLockFailFast = v
     return self
@@ -777,7 +803,7 @@ public final class SWJQL {
     let (cnt, _) = try execute()
     return cnt
   }
-  
+
   /// Alias for executeScalarInt
   @discardableResult
   public func executeCount() throws -> Int64 {
