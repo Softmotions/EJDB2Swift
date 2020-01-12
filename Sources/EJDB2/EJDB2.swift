@@ -141,7 +141,7 @@ public final class JBDOC: CustomStringConvertible {
   }
 
   /// Document body as JSON string.
-  private var json: String?
+  public private(set) var json: String?
 
   /// Parsed document body as json object.
   private var _object: Any? = nil
