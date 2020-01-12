@@ -627,9 +627,13 @@ public final class SWJQL {
 
   /// Set in-query `JSON` object at the specified `placeholder`.
   @discardableResult
-  public func setJson(_ placeholder: String, _ val: Any) throws -> SWJQL {
+  public func setJson(_ placeholder: String, _ val: Any?) throws -> SWJQL {
+    if val == nil {
+      try setNull(placeholder)
+      return self;
+    }
     try placeholder.withCString {
-      let jbln = try SWJBLN(val, keep: true)
+      let jbln = try SWJBLN(val!, keep: true)
       try SWRC(
         jql_set_json2(
           handle, $0, 0, jbln.handle, swjb_free_json_node, UnsafeMutableRawPointer(jbln.pool)))
@@ -639,8 +643,12 @@ public final class SWJQL {
 
   /// Set in-query `JSON` object at the specified `index`.
   @discardableResult
-  public func setJson(_ index: Int32, _ val: Any) throws -> SWJQL {
-    let jbln = try SWJBLN(val, keep: true)
+  public func setJson(_ index: Int32, _ val: Any?) throws -> SWJQL {
+    if val == nil {
+      try setNull(index)
+      return self;
+    }
+    let jbln = try SWJBLN(val!, keep: true)
     try SWRC(
       jql_set_json2(
         handle, nil, index, jbln.handle, swjb_free_json_node, UnsafeMutableRawPointer(jbln.pool)))
@@ -649,16 +657,24 @@ public final class SWJQL {
 
   /// Set in-query `String` object at the specified `placeholder`.
   @discardableResult
-  public func setString(_ placeholder: String, _ val: String) throws -> SWJQL {
+  public func setString(_ placeholder: String, _ val: String?) throws -> SWJQL {
+    if val == nil {
+      try setNull(placeholder)
+      return self;
+    }
     let cPlaceholder = CString(placeholder)
-    let cVal = CString(val, keep: true)
+    let cVal = CString(val!, keep: true)
     try SWRC(jql_set_str2(handle, cPlaceholder.buffer, 0, cVal.buffer, swjb_free_str, nil))
     return self
   }
 
   /// Set in-query `String` object at the specified `index`.
   @discardableResult
-  public func setString(_ index: Int32, _ val: String) throws -> SWJQL {
+  public func setString(_ index: Int32, _ val: String?) throws -> SWJQL {
+    if val == nil {
+      try setNull(index)
+      return self;
+    }
     let cVal = CString(val, keep: true)
     try SWRC(jql_set_str2(handle, nil, index, cVal.buffer, swjb_free_str, nil))
     return self
@@ -666,64 +682,96 @@ public final class SWJQL {
 
   /// Set in-query `Int64` object at the specified `placeholder`.
   @discardableResult
-  public func setInt64(_ placeholder: String, _ val: Int64) throws -> SWJQL {
+  public func setInt64(_ placeholder: String, _ val: Int64?) throws -> SWJQL {
+    if val == nil {
+      try setNull(placeholder)
+      return self;
+    }
     try placeholder.withCString {
-      try SWRC(jql_set_i64(handle, $0, 0, val))
+      try SWRC(jql_set_i64(handle, $0, 0, val!))
     }
     return self
   }
 
   /// Set in-query `Int64` object at the specified `index`.
   @discardableResult
-  public func setInt64(_ index: Int32, _ val: Int64) throws -> SWJQL {
-    try SWRC(jql_set_i64(handle, nil, index, val))
+  public func setInt64(_ index: Int32, _ val: Int64?) throws -> SWJQL {
+    if val == nil {
+      try setNull(index)
+      return self;
+    }
+    try SWRC(jql_set_i64(handle, nil, index, val!))
     return self
   }
 
   /// Set in-query `Double` object at the specified `placeholder`.
   @discardableResult
-  public func setDouble(_ placeholder: String, _ val: Double) throws -> SWJQL {
+  public func setDouble(_ placeholder: String, _ val: Double?) throws -> SWJQL {
+    if val == nil {
+      try setNull(placeholder)
+      return self;
+    }
     try placeholder.withCString {
-      try SWRC(jql_set_f64(handle, $0, 0, val))
+      try SWRC(jql_set_f64(handle, $0, 0, val!))
     }
     return self
   }
 
   /// Set in-query `Double` object at the specified `index`.
   @discardableResult
-  public func setDouble(_ index: Int32, _ val: Double) throws -> SWJQL {
-    try SWRC(jql_set_f64(handle, nil, index, val))
+  public func setDouble(_ index: Int32, _ val: Double?) throws -> SWJQL {
+    if val == nil {
+      try setNull(index)
+      return self;
+    }
+    try SWRC(jql_set_f64(handle, nil, index, val!))
     return self
   }
 
   /// Set in-query `Bool` object at the specified `placeholder`.
   @discardableResult
-  public func setBool(_ placeholder: String, _ val: Bool) throws -> SWJQL {
+  public func setBool(_ placeholder: String, _ val: Bool?) throws -> SWJQL {
+    if val == nil {
+      try setNull(placeholder)
+      return self;
+    }
     try placeholder.withCString {
-      try SWRC(jql_set_bool(handle, $0, 0, val))
+      try SWRC(jql_set_bool(handle, $0, 0, val!))
     }
     return self
   }
 
   /// Set in-query `Bool` object at the specified `index`.
   @discardableResult
-  public func setBool(_ index: Int32, _ val: Bool) throws -> SWJQL {
-    try SWRC(jql_set_bool(handle, nil, index, val))
+  public func setBool(_ index: Int32, _ val: Bool?) throws -> SWJQL {
+    if val == nil {
+      try setNull(index)
+      return self;
+    }
+    try SWRC(jql_set_bool(handle, nil, index, val!))
     return self
   }
 
   /// Set in-query regular expression string at the specified `placeholder`.
-  public func setRegexp(_ placeholder: String, _ val: String) throws -> SWJQL {
+  public func setRegexp(_ placeholder: String, _ val: String?) throws -> SWJQL {
+    if val == nil {
+      try setNull(placeholder)
+      return self;
+    }
     let cPlaceholder = CString(placeholder)
-    let cVal = CString(val, keep: true)
+    let cVal = CString(val!, keep: true)
     try SWRC(jql_set_regexp2(handle, cPlaceholder.buffer, 0, cVal.buffer, swjb_free_str, nil))
     return self
   }
 
   /// Set in-query regular expression string at the specified `index`.
   @discardableResult
-  public func setRegexp(_ index: Int32, _ val: String) throws -> SWJQL {
-    let cVal = CString(val, keep: true)
+  public func setRegexp(_ index: Int32, _ val: String?) throws -> SWJQL {
+    if val == nil {
+      try setNull(index)
+      return self;
+    }
+    let cVal = CString(val!, keep: true)
     try SWRC(jql_set_regexp2(handle, nil, 0, cVal.buffer, swjb_free_str, nil))
     return self
   }
