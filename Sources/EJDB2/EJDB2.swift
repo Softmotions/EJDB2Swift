@@ -564,7 +564,8 @@ public final class SWJQL {
   init(_ db: EJDB2DB, _ query: String, _ collection: String?) throws {
     let cCollection = collection != nil ? CString(collection) : nil
     self.db = db
-    try query.withCString {
+    self.query = query
+    try self.query.withCString {
       try SWRC(jql_create(&handle, cCollection?.buffer, $0))
     }
   }
@@ -580,6 +581,8 @@ public final class SWJQL {
   private var _skip: Int64?
 
   private var _limit: Int64?
+
+  public let query: String
 
   public let db: EJDB2DB
 
