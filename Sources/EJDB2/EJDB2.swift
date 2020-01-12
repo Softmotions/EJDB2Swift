@@ -613,17 +613,20 @@ public final class SWJQL {
     }
   }
 
+  @discardableResult
   public func setSkip(_ val: Int64) -> SWJQL {
     _skip = val
     return self
   }
 
+  @discardableResult
   public func setLimit(_ val: Int64) -> SWJQL {
     _limit = val
     return self
   }
 
   /// Set in-query `JSON` object at the specified `placeholder`.
+  @discardableResult
   public func setJson(_ placeholder: String, _ val: Any) throws -> SWJQL {
     try placeholder.withCString {
       let jbln = try SWJBLN(val, keep: true)
@@ -635,6 +638,7 @@ public final class SWJQL {
   }
 
   /// Set in-query `JSON` object at the specified `index`.
+  @discardableResult
   public func setJson(_ index: Int32, _ val: Any) throws -> SWJQL {
     let jbln = try SWJBLN(val, keep: true)
     try SWRC(
@@ -644,6 +648,7 @@ public final class SWJQL {
   }
 
   /// Set in-query `String` object at the specified `placeholder`.
+  @discardableResult
   public func setString(_ placeholder: String, _ val: String) throws -> SWJQL {
     let cPlaceholder = CString(placeholder)
     let cVal = CString(val, keep: true)
@@ -652,6 +657,7 @@ public final class SWJQL {
   }
 
   /// Set in-query `String` object at the specified `index`.
+  @discardableResult
   public func setString(_ index: Int32, _ val: String) throws -> SWJQL {
     let cVal = CString(val, keep: true)
     try SWRC(jql_set_str2(handle, nil, index, cVal.buffer, swjb_free_str, nil))
@@ -659,6 +665,7 @@ public final class SWJQL {
   }
 
   /// Set in-query `Int64` object at the specified `placeholder`.
+  @discardableResult
   public func setInt64(_ placeholder: String, _ val: Int64) throws -> SWJQL {
     try placeholder.withCString {
       try SWRC(jql_set_i64(handle, $0, 0, val))
@@ -667,12 +674,14 @@ public final class SWJQL {
   }
 
   /// Set in-query `Int64` object at the specified `index`.
+  @discardableResult
   public func setInt64(_ index: Int32, _ val: Int64) throws -> SWJQL {
     try SWRC(jql_set_i64(handle, nil, index, val))
     return self
   }
 
   /// Set in-query `Double` object at the specified `placeholder`.
+  @discardableResult
   public func setDouble(_ placeholder: String, _ val: Double) throws -> SWJQL {
     try placeholder.withCString {
       try SWRC(jql_set_f64(handle, $0, 0, val))
@@ -681,12 +690,14 @@ public final class SWJQL {
   }
 
   /// Set in-query `Double` object at the specified `index`.
+  @discardableResult
   public func setDouble(_ index: Int32, _ val: Double) throws -> SWJQL {
     try SWRC(jql_set_f64(handle, nil, index, val))
     return self
   }
 
   /// Set in-query `Bool` object at the specified `placeholder`.
+  @discardableResult
   public func setBool(_ placeholder: String, _ val: Bool) throws -> SWJQL {
     try placeholder.withCString {
       try SWRC(jql_set_bool(handle, $0, 0, val))
@@ -695,6 +706,7 @@ public final class SWJQL {
   }
 
   /// Set in-query `Bool` object at the specified `index`.
+  @discardableResult
   public func setBool(_ index: Int32, _ val: Bool) throws -> SWJQL {
     try SWRC(jql_set_bool(handle, nil, index, val))
     return self
@@ -709,6 +721,7 @@ public final class SWJQL {
   }
 
   /// Set in-query regular expression string at the specified `index`.
+  @discardableResult
   public func setRegexp(_ index: Int32, _ val: String) throws -> SWJQL {
     let cVal = CString(val, keep: true)
     try SWRC(jql_set_regexp2(handle, nil, 0, cVal.buffer, swjb_free_str, nil))
@@ -716,6 +729,7 @@ public final class SWJQL {
   }
 
   /// Set in-query `null` at the specified `placeholder`.
+  @discardableResult
   public func setNull(_ placeholder: String) throws -> SWJQL {
     try placeholder.withCString {
       try SWRC(jql_set_null(handle, $0, 0))
@@ -724,12 +738,14 @@ public final class SWJQL {
   }
 
   /// Set in-query `null` at the specified `index`.
+  @discardableResult
   public func setNull(_ index: Int32) throws -> SWJQL {
     try SWRC(jql_set_null(handle, nil, index))
     return self
   }
 
   /// Reset all query parameters set previously.
+  @discardableResult
   public func reset() -> SWJQL {
     jql_reset(handle, true, true)
     return self
