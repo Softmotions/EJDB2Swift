@@ -90,7 +90,7 @@ final class EJDB2Tests: XCTestCase {
     XCTAssertEqual(info.size, 8192)
     XCTAssertEqual(info.collections.count, 1)
 
-    var (cnt, log) = try db.createQuery("@mycoll/* | count").execute(log: true, visitor: nil)
+    var (cnt, log) = try db.createQuery("@mycoll/* | count").execute(log: true)
     XCTAssertEqual(cnt, 2)
     XCTAssertEqual(log, "[INDEX] NO [COLLECTOR] PLAIN\n")
 
@@ -108,9 +108,7 @@ final class EJDB2Tests: XCTestCase {
     info = try db.info()
     XCTAssertEqual(info.collections[0].indexes[0].ptr, "/foo")
 
-    (cnt, log) = try db.createQuery("@mycoll/[foo = :?] | count").setString(0, "baz").execute(
-      log: true,
-      visitor: nil)
+    (cnt, log) = try db.createQuery("@mycoll/[foo = :?] | count").setString(0, "baz").execute(log: true)
     XCTAssertEqual(cnt, 1)
     XCTAssertEqual(
       log,

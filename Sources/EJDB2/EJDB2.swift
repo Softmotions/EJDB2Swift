@@ -755,7 +755,7 @@ public final class SWJQL {
     limit: Int64? = nil,
     skip: Int64? = nil,
     log: Bool = false,
-    visitor: JBDOCVisitor?
+    visitor: JBDOCVisitor? = nil
   ) throws -> (count: Int64, log: String?) {
     let logbuf = log ? iwxstr_new() : nil
     defer {
@@ -775,13 +775,6 @@ public final class SWJQL {
       pool: nil)
     let cnt = try SWJQLExecutor(visitor).execute(&ux)
     return (cnt, logbuf != nil ? String(cString: iwxstr_ptr(logbuf)) : nil)
-  }
-
-  public func executeNoVisit(
-    limit: Int64? = nil,
-    skip: Int64? = nil,
-    log: Bool = false) throws -> (count: Int64, log: String?) {
-    return try execute(limit: limit, skip: skip, log: log, visitor: nil)
   }
 
   /// Returns first matched document.
@@ -807,14 +800,14 @@ public final class SWJQL {
   /// For example execution of count query: `/... | count`
   @discardableResult
   public func executeScalarInt() throws -> Int64 {
-    let (cnt, _) = try execute(visitor: nil)
+    let (cnt, _) = try execute()
     return cnt
   }
 
   /// Alias for executeScalarInt
   @discardableResult
   public func executeCount() throws -> Int64 {
-    let (cnt, _) = try execute(visitor: nil)
+    let (cnt, _) = try execute()
     return cnt
   }
 
