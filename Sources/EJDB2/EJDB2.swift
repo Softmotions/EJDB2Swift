@@ -393,7 +393,9 @@ public final class EJDB2Builder {
           savepoint_timeout_sec: walSavepointTimeout ?? 0,
           checkpoint_timeout_sec: walCheckpointTimeout ?? 0,
           wal_buffer_sz: walBufferSize ?? 0,
-          checkpoint_buffer_sz: walCheckpointBufferSize ?? 0
+          checkpoint_buffer_sz: walCheckpointBufferSize ?? 0,
+          wal_lock_interceptor: nil,
+          wal_lock_interceptor_opaque: nil
         )
       ),
       http: EJDB_HTTP(
