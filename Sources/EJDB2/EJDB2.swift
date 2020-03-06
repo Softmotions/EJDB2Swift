@@ -385,6 +385,7 @@ public final class EJDB2Builder {
       kv: IWKV_OPTS(
         path: cPath.buffer,
         random_seed: randomSeed ?? 0,
+        fmt_version: nil,
         oflags: flags,
         file_lock_fail_fast: fileLockFailFast ?? false,
         wal: IWKV_WAL_OPTS(
