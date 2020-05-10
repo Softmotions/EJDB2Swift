@@ -11,11 +11,11 @@
 #include <ejdb2/ejdb2.h>
 #endif
 
-void swjb_free_json_node(void *ptr, void *op) {
+static void swjb_free_json_node(void *ptr, void *op) {
   IWPOOL *pool = (IWPOOL*) op;
   if (pool) iwpool_destroy(pool);
 }
 
-void swjb_free_str(void *ptr, void *op) {
+static void swjb_free_str(void *ptr, void *op) {
   if (ptr) free(ptr);
 }
