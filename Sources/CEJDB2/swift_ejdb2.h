@@ -1,8 +1,12 @@
 #include <stdlib.h>
+
 #if defined(__linux__)
-#include <sys/types.h>
-#include <bits/types/locale_t.h>
-#include <stdlib.h>
+  #include <sys/types.h>
+  #if defined(__GLIBC__) && (__GLIBC__ == 2 && __GLIBC_MINOR__ < 26)
+    #include <xlocale.h>
+  #else
+    #include <bits/types/locale_t.h>
+  #endif
 #endif
 
 #ifdef INPROJECT_BUILD
