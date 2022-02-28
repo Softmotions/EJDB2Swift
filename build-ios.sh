@@ -20,6 +20,7 @@ if [[ -z "${EJDB_ROOT}" ]]; then
   echo "Source root: ${EJDB_ROOT}"
   echo "Checkout https://github.com/Softmotions/ejdb"
   git clone "https://github.com/Softmotions/ejdb" "${EJDB_ROOT}"
+  (cd "${EJDB_ROOT}" && git submodule update --init)
 else
   echo "Source root: ${EJDB_ROOT}"
 fi
