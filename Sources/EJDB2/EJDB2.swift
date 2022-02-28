@@ -408,7 +408,9 @@ public final class EJDB2Builder {
         blocking: false,
         read_anon: httpReadAnon ?? false,
         max_body_size: Int(httpMaxBodySize ?? 0),
-        cors: false
+        cors: false,
+        ssl_private_key: nil,
+        ssl_certs: nil
       ),
       no_wal: walDisabled ?? false,
       sort_buffer_sz: sortBufferSize ?? 0,
