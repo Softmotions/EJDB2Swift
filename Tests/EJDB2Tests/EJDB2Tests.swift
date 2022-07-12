@@ -33,7 +33,7 @@ final class EJDB2Tests: XCTestCase {
       let jbe = err as! EJDB2Error
       XCTAssertEqual(jbe.code, UInt64(JBL_ERROR_PARSE_UNQUOTED_STRING.rawValue))
       XCTAssertEqual(
-        "\(jbe)", "EJDB2Error: 86005 Unquoted JSON string (JBL_ERROR_PARSE_UNQUOTED_STRING)")
+        "\(jbe)", "EJDB2Error: 76005 Unquoted JSON string (JBL_ERROR_PARSE_UNQUOTED_STRING)")
     }
 
     id = try db.put("mycoll", ["foo": "bar"])
