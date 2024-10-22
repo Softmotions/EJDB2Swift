@@ -1,3 +1,5 @@
+# WARNING: Unsupported now. Maintainer needed.
+
 # EJDB2Swift
 
 EJDB2 Swift language binding
@@ -39,10 +41,7 @@ Code examples:
 ### Setup
 
 On OSX/Linux EJDB2 available as package for [Swift package manager](https://github.com/apple/swift-package-manager/blob/master/Documentation/Usage.md)
-
 In order to use swift binding you should install system wide `libejdb2` library with pkgconfig supplied.
-
-On linux it can be accomplished by installing Debian `ejdb2` package from [ppa:adamansky/ejdb2](https://launchpad.net/~adamansky/+archive/ubuntu/ejdb2)
 
 On OSX
 

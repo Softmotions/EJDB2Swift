@@ -16,10 +16,14 @@
 #endif
 
 static void swjb_free_json_node(void *ptr, void *op) {
-  IWPOOL *pool = (IWPOOL*) op;
-  if (pool) iwpool_destroy(pool);
+  struct iwpool *pool = (struct iwpool*) op;
+  if (pool) {
+    iwpool_destroy(pool);
+  }
 }
 
 static void swjb_free_str(void *ptr, void *op) {
-  if (ptr) free(ptr);
+  if (ptr) {
+    free(ptr);
+  }
 }

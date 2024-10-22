@@ -87,7 +87,7 @@ public final class JBDOC: CustomStringConvertible {
     self.json = String(cString: iwxstr_ptr(xstr))
   }
 
-  init(_ id: Int64, jbn: UnsafeMutablePointer<_JBL_NODE>) throws {
+  init(_ id: Int64, jbn: UnsafeMutablePointer<jbl_node>) throws {
     guard let xstr = iwxstr_new() else {
       throw EJDB2Error(UInt64(IW_ERROR_ALLOC.rawValue))
     }
@@ -103,7 +103,7 @@ public final class JBDOC: CustomStringConvertible {
     try self.init(id, jbl: swjbl.handle!)
   }
 
-  convenience init(_ doc: UnsafeMutablePointer<_EJDB_DOC>) throws {
+  convenience init(_ doc: UnsafeMutablePointer<ejdb_doc>) throws {
     let id = doc.pointee.id
     if doc.pointee.node != nil {
       try self.init(id, jbn: doc.pointee.node!)
@@ -836,7 +836,7 @@ public final class SWJQL {
         iwxstr_destroy(logbuf)
       }
     }
-    var ux = _EJDB_EXEC(
+    var ux = ejdb_exec(
       db: self.db.handle,
       q: self.handle,
       visitor: nil,  // Will be filled on execute(&ux)
@@ -904,12 +904,12 @@ final class SWJQLExecutor {
 
   let visitor: JBDOCVisitor?
 
-  func execute(_ uxp: UnsafeMutablePointer<_EJDB_EXEC>) throws -> Int64 {
+  func execute(_ uxp: UnsafeMutablePointer<ejdb_exec>) throws -> Int64 {
     if visitor != nil {
       let _visitor:
         @convention(c) (
-          _: UnsafeMutablePointer<_EJDB_EXEC>?,
-          _: UnsafeMutablePointer<_EJDB_DOC>?,
+          _: UnsafeMutablePointer<ejdb_exec>?,
+          _: UnsafeMutablePointer<ejdb_doc>?,
           _: UnsafeMutablePointer<Int64>?
         ) -> iwrc = {
           let ux = $0!.pointee
